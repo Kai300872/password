@@ -1,20 +1,22 @@
-import random   # для случайных чисел
-import string   # содержит буквы, цифры и символы
+import random   
+import string   
 
-# --- просим пользователя ввести длину пароля ---
 length = input("Введите длину пароля: ")
 
-# проверяем, что пользователь ввёл число
+# проверка на ввод числа
 if not length.isdigit():
     print("Ошибка: нужно ввести число!")
 else:
-    length = int(length)  # превращаем строку в число
+    length = int(length)
 
-    # набор символов: буквы, цифры, спецсимволы
+    # буквы, цифры, спецсимволы
     all_chars = string.ascii_letters + string.digits + string.punctuation
 
-    # создаём пароль нужной длины
+    # длина пароля
     password = ''.join(random.choice(all_chars) for _ in range(length))
 
-    # выводим результат
     print("Ваш пароль:", password)
+    with open("password.txt", "w") as file:
+        file.write(password)
+    print("Пароль сохранен в файл password.txt")
+
